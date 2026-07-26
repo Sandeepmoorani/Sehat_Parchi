@@ -128,13 +128,13 @@ Your task is to:
 
 ---
 
-## Urdu Report Analysis
+## Sindhi Report Analysis
 
 ![Urdu](./public/screenshots/urdu-results.png)
 
 ---
 
-## Sindhi Report Analysis
+## Urdu Report Analysis
 
 ![Sindhi](./public/screenshots/sindhi-results.png)
 
