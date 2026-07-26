@@ -1,88 +1,253 @@
-# Sehat Parchi - Lab Report Samjhao
+# 🩺 Sehat Parchi — Lab Report Samjhao
 
-## What it does & Problem it solves
-In Pakistan, especially in regions like Hyderabad Sindh, many families receive medical lab reports in English and struggle to understand the medical jargon and complex parameters. 
-**Sehat Parchi** solves this problem by allowing users to upload a photo of their lab report and receive a simple, easy-to-understand explanation in their native language (English, Urdu Roman, Urdu Script, or Sindhi). 
-It empowers patients and their families to understand their health status without feeling intimidated by complex medical terms.
+> Understand medical lab reports in simple language using AI.
 
-## Live URL
-[https://sehat-parchi.vercel.app](https://sehat-parchi.vercel.app) (Placeholder)
+---
 
-## Features list
-- **Multi-language Support:** Choose between English, Urdu Roman, اردو (Urdu Script), and سنڌي (Sindhi).
-- **Image Upload:** Simple drag-and-drop or click-to-upload interface for lab reports (JPG/PNG).
-- **AI-Powered OCR & Analysis:** Uses Google Gemini 1.5 Flash to accurately read the report and extract parameters, values, and normal ranges.
-- **Detailed Results Dashboard:** Beautifully structured cards showing the test summary, a detailed values table, a simple explanation, diet/lifestyle tips, and advice on when to see a doctor.
-- **Local History:** Saves your last 5 analyzed reports securely in your browser's local storage for easy access.
-- **Export & Share:** Options to save the report as a PDF or share it directly via WhatsApp.
+# 📖 About the Project
 
-## AI Feature & System Prompt
-This application uses `@google/generative-ai` with the `gemini-1.5-flash` model for both OCR and natural language generation.
+Medical laboratory reports are often written in English and contain complex medical terminology that many patients and their families struggle to understand.
 
-**System Prompt:**
+**Sehat Parchi** is an AI-powered web application that helps users understand their lab reports in simple and easy language. Users simply upload a picture of their medical report, choose their preferred language, and receive a clear explanation generated using Google Gemini AI.
+
+The application supports:
+
+- 🇬🇧 English
+- 🇵🇰 Roman Urdu
+- 🇵🇰 اردو (Urdu)
+- 🏴 سنڌي (Sindhi)
+
+This project was built as an individual AI application to improve healthcare accessibility for Pakistani communities by making medical reports easier to understand.
+
+---
+
+# 🌐 Live Demo
+
+### 👉 https://sehat-parchi.vercel.app/
+
+---
+
+# 🚀 Features
+
+- 📷 Upload medical lab reports (JPG / PNG)
+- 🤖 AI-powered OCR and report analysis using Google Gemini
+- 🌍 Multi-language support
+  - English
+  - Roman Urdu
+  - Urdu
+  - Sindhi
+- 📊 Clean dashboard showing:
+  - Test name
+  - Test summary
+  - Simple explanation
+  - Detailed parameter table
+  - Normal ranges
+  - Status (Low / High / Normal)
+  - Easy-to-understand meanings
+- 🥗 Personalized diet & lifestyle tips
+- 👨‍⚕️ Guidance on when to consult a doctor
+- 🕘 Stores last 5 analyzed reports using browser Local Storage
+- 🖨️ Print / Save report as PDF
+- 💬 Share report through WhatsApp
+- 📱 Fully responsive design
+- 🧪 Built-in sample report for testing
+
+---
+
+# 🧠 AI Feature
+
+Sehat Parchi uses **Google Gemini** to analyze uploaded medical lab reports.
+
+The AI performs:
+
+- OCR (reads text from the report)
+- Extracts laboratory parameters
+- Reads patient values
+- Reads normal ranges
+- Determines Low / High / Normal status
+- Generates simple explanations
+- Provides diet recommendations
+- Advises when to consult a doctor
+- Returns structured JSON used by the application
+
+---
+
+# 📝 AI System Prompt
+
 ```text
 You are Sehat Parchi, a friendly Pakistani health educator. You are NOT a doctor and you never prescribe medicine.
 
-User requested language: {LANGUAGE} - can be English, Urdu Roman, اردو (Urdu Script), سنڌي (Sindhi)
+User requested language: {LANGUAGE}
 
-You will get a lab report image as input.
+You will receive a laboratory report image.
 
-Your task:
-1. Perform OCR and read all parameters, values, and normal ranges
-2. Return VALID JSON ONLY, no markdown, no explanation outside JSON, in this EXACT schema:
+Your task is to:
 
-{
-  "testName": "e.g. CBC - Complete Blood Picture",
-  "summary": "1 line what is this test for",
-  "values": [
-    {
-      "parameter": "Hemoglobin",
-      "yourValue": "9.2 g/dL",
-      "normalRange": "12-16 g/dL",
-      "status": "Low",
-      "simpleMeaning": "Khoon ki kami"
-    }
-  ],
-  "simpleExplanation": "Detailed simple explanation in {LANGUAGE}, 4-5 bullet points, easy words, non-scary, friendly",
-  "dietTips": ["3 diet tips in {LANGUAGE}"],
-  "whenToSeeDoctor": "1-2 lines in {LANGUAGE} about when to see doctor",
-  "disclaimer": "This is for education only, consult a real doctor."
-}
-
-RULES:
-- simpleExplanation, dietTips, whenToSeeDoctor MUST be in {LANGUAGE}
-- If {LANGUAGE} is اردو, write in proper Urdu script. If سنڌي, write in Sindhi/Urdu script mix.
-- If {LANGUAGE} is Urdu Roman, write roman urdu like "Khoon ki kami hai"
-- Status must be exactly: Low, High, or Normal
-- If image is not a lab report, return {"error": "Not a lab report image"}
-- Never mention you are AI. Be warm, caring.
-- NEVER give medicine names or dosage.
+• Read the report using OCR
+• Extract all laboratory parameters
+• Read patient values
+• Read normal ranges
+• Classify values as Low, High or Normal
+• Explain the report using simple language
+• Return ONLY valid JSON
+• Never prescribe medicines
+• Never provide dosages
+• Encourage consulting a qualified doctor when appropriate
 ```
 
-## Tools & Models
-- **Framework:** Next.js 14 App Router
-- **Language:** TypeScript
-- **Styling:** Tailwind CSS + custom UI components
-- **Icons:** `lucide-react`
-- **AI Model:** Google Gemini 1.5 Flash Vision API
-- **Fonts:** Inter (English) and Noto Nastaliq Urdu (Urdu)
+---
 
-## Screenshots
-*(Add screenshots here)*
+# 🛠️ Technologies Used
 
-## How to run locally
-1. Clone the repository
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Set up environment variables:
-   Copy `.env.example` to `.env.local` and add your Gemini API Key.
-   ```bash
-   GEMINI_API_KEY=your_key_here
-   ```
-4. Run the development server:
-   ```bash
-   npm run dev
-   ```
-5. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+| Category | Technology |
+|----------|------------|
+| Framework | Next.js 16 |
+| Frontend | React 19 |
+| Language | TypeScript |
+| Styling | Tailwind CSS |
+| Icons | Lucide React |
+| AI SDK | Google Generative AI SDK |
+| AI Model | Google Gemini |
+| Storage | Browser Local Storage |
+| Deployment | Vercel |
+| Version Control | Git & GitHub |
+
+---
+
+# 📸 Screenshots
+
+## Homepage
+
+![Homepage](./public/screenshots/homepage.png)
+
+---
+
+## English Report Analysis
+
+![English](./public/screenshots/english-results.png)
+
+---
+
+## Urdu Report Analysis
+
+![Urdu](./public/screenshots/urdu-results.png)
+
+---
+
+## Sindhi Report Analysis
+
+![Sindhi](./public/screenshots/sindhi-results.png)
+
+---
+
+# 📂 Project Structure
+
+```text
+Sehat_Parchi
+│
+├── app
+│   ├── api
+│   ├── layout.tsx
+│   └── page.tsx
+│
+├── components
+├── lib
+├── public
+│   ├── samples
+│   └── screenshots
+│
+├── types
+├── package.json
+└── README.md
+```
+
+---
+
+# ⚙️ Installation
+
+Clone the repository
+
+```bash
+git clone https://github.com/Sandeepmoorani/Sehat_Parchi.git
+```
+
+Go into the project
+
+```bash
+cd Sehat_Parchi
+```
+
+Install dependencies
+
+```bash
+npm install
+```
+
+Create `.env.local`
+
+```env
+GEMINI_API_KEY=your_gemini_api_key
+```
+
+Run the development server
+
+```bash
+npm run dev
+```
+
+Open
+
+```
+http://localhost:3000
+```
+
+---
+
+# ☁️ Deployment
+
+The application is deployed on **Vercel**.
+
+Live URL:
+
+https://sehat-parchi.vercel.app/
+
+---
+
+# 🔒 Privacy
+
+- No user account is required.
+- Reports are not stored in a database.
+- Recent reports are stored only in the user's browser using Local Storage.
+- Users should avoid uploading confidential medical documents they do not wish to share with an external AI provider.
+
+---
+
+# ⚠️ Medical Disclaimer
+
+Sehat Parchi is an educational AI application.
+
+It **does not** provide medical diagnosis, treatment, or prescriptions.
+
+Always consult a qualified healthcare professional regarding medical concerns or laboratory reports.
+
+---
+
+# 🔗 Project Links
+
+### Live Website
+
+https://sehat-parchi.vercel.app/
+
+### GitHub Repository
+
+https://github.com/Sandeepmoorani/Sehat_Parchi
+
+---
+
+# 👨‍💻 Author
+
+**Sandeep Moorani**
+
+Final AI Project
+
+Built with ❤️ for the community.
