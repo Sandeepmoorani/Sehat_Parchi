@@ -146,7 +146,7 @@ export default function Home() {
             </div>
           </div>
           <a 
-            href="https://github.com" 
+            href="https://github.com/Sandeepmoorani/Sehat_Parchi.git" 
             target="_blank" 
             rel="noreferrer"
             className="text-slate-400 hover:text-slate-900 transition-colors"
